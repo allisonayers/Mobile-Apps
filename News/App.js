@@ -15,6 +15,7 @@ import { useCallback } from "react";
 import BookmarksScreen from "./screens/BookmarkScreen";
 import { Entypo } from "@expo/vector-icons";
 import { FontAwesome6 } from '@expo/vector-icons';
+import BookmarksContextProvider from "./store/context/bookmarks-context";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -54,7 +55,7 @@ function DrawerNavigator() {
         name="BookmarkScreen"
         component={BookmarksScreen}
         options={{
-          title: "Saved News Reports",
+          title: "Saved Reports",
           drawerLabel: "Saved Reports",
           drawerIcon: ({ color, size }) => (
             <Entypo name="bookmarks" size={size} color={color} />
@@ -139,6 +140,7 @@ export default function App() {
     return (
       <>
         <StatusBar style="dark" />
+        <BookmarksContextProvider>
         <NavigationContainer>
           <Stack.Navigator
             initialRouteName="DrawerScreen"
@@ -164,6 +166,7 @@ export default function App() {
             />
           </Stack.Navigator>
         </NavigationContainer>
+        </BookmarksContextProvider>
       </>
     );
   }
